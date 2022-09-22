@@ -22,13 +22,13 @@ jobs:
         run: git clone --recursive https://github.com/beefytech/Beef.git
 
       - name: Build llvm
-        run: cd extern && bash ./llvm_build.sh
+        run: cd Beef/extern && bash ./llvm_build.sh
         
       - name: Create package
         uses: thedoctor0/zip-release@master
         with:
           type: 'zip'
-          directory: './extern/'
+          directory: 'Beef/extern/'
           filename: 'llvm-dist.zip'
         
       - name: Remove old Release
@@ -42,7 +42,7 @@ jobs:
       - name: Upload Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "llvm-dist.zip"
+          artifacts: "Beef/extern/llvm-dist.zip"
           name: 'llvm-dist'
           prerelease: true
           tag: llvm-dist
